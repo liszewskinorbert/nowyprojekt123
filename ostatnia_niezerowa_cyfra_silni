@@ -1,0 +1,39 @@
+
+tests = int(input())
+
+value = []
+i = 0
+while i<tests:
+    #print(tests)
+    x = int(input())
+    value.append(x)
+    i = i +1
+
+
+def lastNumber(n):
+    j =1
+    k =1
+    while j <= n:
+        k *= j
+        while(k % 10 == 0):
+            k = k / 10
+        k = k % 10000
+        j = j + 1
+    return k % 10
+
+
+
+l = 0
+result =[]
+
+while l<tests:
+    result.append(int(lastNumber(value[l])))
+    l = l +1
+
+#print(value)
+#print(result)
+
+
+for val in result:
+    print(val)
+
