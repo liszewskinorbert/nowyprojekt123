@@ -1,0 +1,68 @@
+tests = int(input())
+value = []
+i = 0
+while i<tests*2:
+    x = input().split()
+    for val in x:
+        value.append(val)
+    i = i + 2
+
+addTable = []
+
+def howLongValues(valA, valB):
+    longA = len(valA)
+    longB = len(valB)
+    if longA >= longB:
+        longValue = longA
+    elif longB > longA:
+        longValue = longB
+    return longValue
+
+
+def addVals(a,b, adding):
+    a = int(a)
+    b = int(b)
+    adding = int(adding)
+    if a+b+adding >= 10:
+        val = a+b+adding
+        adding = 1
+    else:
+        val = a+b+adding
+        adding = 0
+    return val % 10, adding
+
+
+i = 0
+while i<len(value):
+    number1 = value[i]
+    number2 = value[i+1]
+    adding = 0
+    j = 1
+    long = howLongValues(number1, number2)
+    addVal = []
+    while j <= long:
+        if j > len(number1):
+            cyfra1 = 0
+        else:
+            index = j * (-1)
+            cyfra1 = number1[index]
+        if j > len(number2):
+            cyfra2 = 0
+        else:
+            index = j * (-1)
+            cyfra2 = number2[index]
+        sum, adding = addVals(cyfra1, cyfra2, adding)
+        addVal.append(sum)
+        if (adding == 1 and j==long):
+            addVal.append(adding)
+        j = j + 1
+    addTable.append(addVal[::-1])
+    i = i +2
+
+
+
+for val in addTable:
+    ciag = ""
+    for v in val:
+        ciag = ciag + str(v)
+    print(ciag)
